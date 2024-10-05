@@ -1,14 +1,14 @@
 package lk.ijse.notecollectorusingspringboot.service;
 
-import lk.ijse.notescollectorbackend.customStatusCodes.SelectedUserAndNoteErrorStatus;
-import lk.ijse.notescollectorbackend.dao.NoteDAO;
-import lk.ijse.notescollectorbackend.dto.NoteStatus;
-import lk.ijse.notescollectorbackend.dto.impl.NoteDTO;
-import lk.ijse.notescollectorbackend.entity.NoteEntity;
-import lk.ijse.notescollectorbackend.exception.DataPersistException;
-import lk.ijse.notescollectorbackend.exception.NoteNotFoundException;
-import lk.ijse.notescollectorbackend.util.AppUtil;
-import lk.ijse.notescollectorbackend.util.Mapping;
+import lk.ijse.notecollectorusingspringboot.customStatusCodes.SelectedUserAndNoteErrorStatus;
+import lk.ijse.notecollectorusingspringboot.dao.NoteDAO;
+import lk.ijse.notecollectorusingspringboot.dto.NoteStatus;
+import lk.ijse.notecollectorusingspringboot.dto.impl.NoteDTO;
+import lk.ijse.notecollectorusingspringboot.entity.NoteEntity;
+import lk.ijse.notecollectorusingspringboot.exception.DataPersistException;
+import lk.ijse.notecollectorusingspringboot.exception.NoteNotFoundException;
+import lk.ijse.notecollectorusingspringboot.util.AppUtil;
+import lk.ijse.notecollectorusingspringboot.util.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

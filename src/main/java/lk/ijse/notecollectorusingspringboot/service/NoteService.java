@@ -1,7 +1,7 @@
 package lk.ijse.notecollectorusingspringboot.service;
 
-import lk.ijse.notescollectorbackend.dto.NoteStatus;
-import lk.ijse.notescollectorbackend.dto.impl.NoteDTO;
+import lk.ijse.notecollectorusingspringboot.dto.NoteStatus;
+import lk.ijse.notecollectorusingspringboot.dto.impl.NoteDTO;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package lk.ijse.notecollectorusingspringboot.dto.impl;
 
-import lk.ijse.notescollectorbackend.dto.NoteStatus;
+import lk.ijse.notecollectorusingspringboot.dto.NoteStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
