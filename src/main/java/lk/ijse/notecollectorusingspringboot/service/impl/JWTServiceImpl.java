@@ -37,7 +37,7 @@ public class JWTServiceImpl implements JWTService {
         return claimsResolve.apply(claims);
     }
     private Claims getClaims(String token) {
-        return Jwts.parser().setSigningKey(getKey()).build().parseClaimsJwt(token)
+        return Jwts.parser().setSigningKey(getSignKey()).build().parseClaimsJwt(token)
                 .getBody();
     }
     private Key getKey() {
@@ -76,16 +76,26 @@ public class JWTServiceImpl implements JWTService {
         return getExpiration(token).before(new Date());
 
     }
-
+    //expired nam true
     private Date getExpiration(String token) {
         return extractClaim(token, Claims::getExpiration);
     }
 
-    //expired nam true
 
     @Override
-    public String refreshToken(String prevToken) {
-        return null;
+    public String refreshToken(UserDetails userDetails) {
+        return refreshToken(new HashMap<>(),userDetails);
+    }
+
+    private String refreshToken(Map<String, Object> genClaimsRefresh, UserDetails userDetails) {
+        genClaimsRefresh.put("role",userDetails.getAuthorities());
+        Date now = new Date();
+        Date refreshExpire = new Date(now.getTime() + 1000 * 600 * 600);
+
+        return Jwts.builder().setClaims(genClaimsRefresh)
+                .setSubject(userDetails.getUsername())
+                .setExpiration(refreshExpire)
+                .signWith(getSignKey(), SignatureAlgorithm.HS256).compact();
     }
 
 
