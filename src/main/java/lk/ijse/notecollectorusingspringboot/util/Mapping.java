@@ -2,8 +2,8 @@ package lk.ijse.notecollectorusingspringboot.util;
 
 import lk.ijse.notecollectorusingspringboot.dto.impl.NoteDTO;
 import lk.ijse.notecollectorusingspringboot.dto.impl.UserDTO;
-import lk.ijse.notecollectorusingspringboot.entity.NoteEntity;
-import lk.ijse.notecollectorusingspringboot.entity.UserEntity;
+import lk.ijse.notecollectorusingspringboot.entity.impl.NoteEntity;
+import lk.ijse.notecollectorusingspringboot.entity.impl.UserEntity;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

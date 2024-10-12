@@ -1,6 +1,7 @@
-package lk.ijse.notecollectorusingspringboot.entity;
+package lk.ijse.notecollectorusingspringboot.entity.impl;
 
 import jakarta.persistence.*;
+import lk.ijse.notecollectorusingspringboot.entity.SuperEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,7 +12,7 @@ import lombok.NoArgsConstructor;
 //Entity ekak kiyala define karanwa
 @Entity
 @Table(name = "note")
-public class NoteEntity implements SuperEntity{
+public class NoteEntity implements SuperEntity {
     @Id
     private String noteId;
     private String noteTitle;

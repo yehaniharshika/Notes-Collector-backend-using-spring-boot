@@ -4,11 +4,12 @@ import lk.ijse.notecollectorusingspringboot.customStatusCodes.SelectedUserAndNot
 import lk.ijse.notecollectorusingspringboot.dao.UserDAO;
 import lk.ijse.notecollectorusingspringboot.dto.UserStatus;
 import lk.ijse.notecollectorusingspringboot.dto.impl.UserDTO;
-import lk.ijse.notecollectorusingspringboot.entity.UserEntity;
+import lk.ijse.notecollectorusingspringboot.entity.impl.UserEntity;
 import lk.ijse.notecollectorusingspringboot.exception.DataPersistException;
 import lk.ijse.notecollectorusingspringboot.exception.UserNotFoundException;
 import lk.ijse.notecollectorusingspringboot.util.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -79,5 +80,11 @@ public class UserServiceImpl implements UserService{
         }else {
             userDAO.deleteById(userId);
         }
+    }
+
+    @Override
+    public UserDetailsService userDetailService() {
+        return  username -> userDAO.findByEmail(username)
+                .orElseThrow(()->new UserNotFoundException("user not found"));
     }
 }

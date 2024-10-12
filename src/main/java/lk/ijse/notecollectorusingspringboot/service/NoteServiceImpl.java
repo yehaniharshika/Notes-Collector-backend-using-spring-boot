@@ -4,7 +4,7 @@ import lk.ijse.notecollectorusingspringboot.customStatusCodes.SelectedUserAndNot
 import lk.ijse.notecollectorusingspringboot.dao.NoteDAO;
 import lk.ijse.notecollectorusingspringboot.dto.NoteStatus;
 import lk.ijse.notecollectorusingspringboot.dto.impl.NoteDTO;
-import lk.ijse.notecollectorusingspringboot.entity.NoteEntity;
+import lk.ijse.notecollectorusingspringboot.entity.impl.NoteEntity;
 import lk.ijse.notecollectorusingspringboot.exception.DataPersistException;
 import lk.ijse.notecollectorusingspringboot.exception.NoteNotFoundException;
 import lk.ijse.notecollectorusingspringboot.util.AppUtil;
