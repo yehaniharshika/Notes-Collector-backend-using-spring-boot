@@ -15,7 +15,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class SecurityConfig {
-    @Value("${secure.username}")
+    /*@Value("${secure.username}")
     private String userName;
 
     @Value("${secure.password}")
@@ -40,16 +40,17 @@ public class SecurityConfig {
     public InMemoryUserDetailsManager inMemoryUserDetailsManager(){
         //create principle User
         UserDetails principleUser = User.withDefaultPasswordEncoder()
-                /*.username("yehani")
+                *//*.username("yehani")
                 .password("1234")
                 .roles("USER")
-                .build();*/
+                .build();*//*
                 .username(userName)
                 .password(password)
                 .roles(role)
                 .build();
         return new InMemoryUserDetailsManager(principleUser);
-    }
+    }*/
+    
 
 
 
