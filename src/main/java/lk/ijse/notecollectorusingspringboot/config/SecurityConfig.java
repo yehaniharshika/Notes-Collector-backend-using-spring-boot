@@ -23,6 +23,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @RequiredArgsConstructor
@@ -30,6 +31,7 @@ public class SecurityConfig {
     //@Autowired dlath puluwan
 
     private final UserService userService;
+    private final JWTConfigFilter jwtConfigFilter;
     /*@Value("${secure.username}")
     private String userName;
 
@@ -74,7 +76,7 @@ public class SecurityConfig {
                         .authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
-                .addFilterBefore();
+                .addFilterBefore(jwtConfigFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 
