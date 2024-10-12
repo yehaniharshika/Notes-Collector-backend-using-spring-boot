@@ -1,5 +1,6 @@
 package lk.ijse.notecollectorusingspringboot.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +15,14 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class SecurityConfig {
+    @Value("${secure.username}")
+    private String userName;
+
+    @Value("${secure.password}")
+    private String password;
+
+    @Value("${secure.role}")
+    private String role;
 
     //ena hema request ekakma authenticate karanwa-check karala balanwa mehema kenekta enna puluwanda kiyala
     @Bean
@@ -31,9 +40,13 @@ public class SecurityConfig {
     public InMemoryUserDetailsManager inMemoryUserDetailsManager(){
         //create principle User
         UserDetails principleUser = User.withDefaultPasswordEncoder()
-                .username("yehani")
+                /*.username("yehani")
                 .password("1234")
                 .roles("USER")
+                .build();*/
+                .username(userName)
+                .password(password)
+                .roles(role)
                 .build();
         return new InMemoryUserDetailsManager(principleUser);
     }
