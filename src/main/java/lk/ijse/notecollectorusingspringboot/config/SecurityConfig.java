@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.AuthorizeHttpRequestsD
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
@@ -50,7 +51,21 @@ public class SecurityConfig {
                 .build();
         return new InMemoryUserDetailsManager(principleUser);
     }*/
-    
+    @Bean
+    public  SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
+        http.csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(req-> req.requestMatchers("api/v1/auth/**")
+                        .permitAll()
+                        .anyRequest()
+                        .authenticated())
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authenticationProvider()
+                .addFilterBefore();
+        return http.build();
+
+
+
+    }
 
 
 
