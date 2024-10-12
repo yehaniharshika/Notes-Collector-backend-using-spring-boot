@@ -2,6 +2,7 @@ package lk.ijse.notecollectorusingspringboot.service.impl;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import lk.ijse.notecollectorusingspringboot.service.JWTService;
@@ -10,6 +11,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Function;
 
 
@@ -41,8 +45,24 @@ public class JWTServiceImpl implements JWTService {
     }
 
     @Override
-    public String generateToken(UserDetails user) {
-        return null;
+    public String generateToken(UserDetails userDetails) {
+        return ToGenerateToken(new HashMap<>(),userDetails);
+    }
+
+    private String ToGenerateToken(Map<String, Object> genClaims, UserDetails userDetails) {
+        genClaims.put("role",userDetails.getAuthorities());
+        Date now = new Date();
+        Date expiration = new Date(now.getTime() + 1000 * 600);
+        return Jwts.builder().setClaims(genClaims)
+                .setSubject(userDetails.getUsername())
+                .setIssuedAt(now)
+                .setExpiration(expiration)
+                .signWith(getSignKey(), SignatureAlgorithm.HS256).compact();
+    }
+
+    private Key getSignKey() {
+        byte [] decodedJWT = Decoders.BASE64.decode(jwtKey);
+        return Keys.hmacShaKeyFor(decodedJWT);
     }
 
     @Override
