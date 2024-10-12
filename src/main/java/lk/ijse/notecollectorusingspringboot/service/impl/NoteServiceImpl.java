@@ -1,4 +1,4 @@
-package lk.ijse.notecollectorusingspringboot.service;
+package lk.ijse.notecollectorusingspringboot.service.impl;
 
 import lk.ijse.notecollectorusingspringboot.customStatusCodes.SelectedUserAndNoteErrorStatus;
 import lk.ijse.notecollectorusingspringboot.dao.NoteDAO;
@@ -7,6 +7,7 @@ import lk.ijse.notecollectorusingspringboot.dto.impl.NoteDTO;
 import lk.ijse.notecollectorusingspringboot.entity.impl.NoteEntity;
 import lk.ijse.notecollectorusingspringboot.exception.DataPersistException;
 import lk.ijse.notecollectorusingspringboot.exception.NoteNotFoundException;
+import lk.ijse.notecollectorusingspringboot.service.NoteService;
 import lk.ijse.notecollectorusingspringboot.util.AppUtil;
 import lk.ijse.notecollectorusingspringboot.util.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class NoteServiceImpl implements NoteService{
+public class NoteServiceImpl implements NoteService {
     private static List<NoteDTO> noteDTOList = new ArrayList<>();
     @Autowired
     private NoteDAO noteDAO;

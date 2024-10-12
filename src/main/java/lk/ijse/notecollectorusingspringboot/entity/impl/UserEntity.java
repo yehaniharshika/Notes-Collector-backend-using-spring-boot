@@ -45,6 +45,7 @@ public class UserEntity implements UserDetails, SuperEntity {
         /*return List.of();*/
         Set<GrantedAuthority>  authorities= new HashSet<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_"+role.name()));
+        return authorities;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package lk.ijse.notecollectorusingspringboot.service;
+package lk.ijse.notecollectorusingspringboot.service.impl;
 
 import lk.ijse.notecollectorusingspringboot.customStatusCodes.SelectedUserAndNoteErrorStatus;
 import lk.ijse.notecollectorusingspringboot.dao.UserDAO;
@@ -7,6 +7,7 @@ import lk.ijse.notecollectorusingspringboot.dto.impl.UserDTO;
 import lk.ijse.notecollectorusingspringboot.entity.impl.UserEntity;
 import lk.ijse.notecollectorusingspringboot.exception.DataPersistException;
 import lk.ijse.notecollectorusingspringboot.exception.UserNotFoundException;
+import lk.ijse.notecollectorusingspringboot.service.UserService;
 import lk.ijse.notecollectorusingspringboot.util.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,7 +19,7 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
     @Autowired
     private UserDAO userDAO;
     @Autowired
