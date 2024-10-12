@@ -31,6 +31,7 @@ public class JWTServiceImpl implements JWTService {
         return extractClaim(token,Claims::getSubject);
     }
 
+    //use to get claims of token(claims adala gnna token eken)
     private <T> T extractClaim(String token, Function<Claims,T> claimsResolve) {
         final Claims claims = getClaims(token);
         return claimsResolve.apply(claims);
@@ -67,8 +68,20 @@ public class JWTServiceImpl implements JWTService {
 
     @Override
     public boolean validateToken(String token, UserDetails userDetails) {
-        return false;
+        String userName = extractUserName(token);
+        return (userName.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
+
+    private boolean isTokenExpired(String token){
+        return getExpiration(token).before(new Date());
+
+    }
+
+    private Date getExpiration(String token) {
+        return extractClaim(token, Claims::getExpiration);
+    }
+
+    //expired nam true
 
     @Override
     public String refreshToken(String prevToken) {
